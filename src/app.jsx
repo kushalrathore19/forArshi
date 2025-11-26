@@ -1,11 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Heart, Cloud, Wind, Sparkles, Flame, ArrowLeft, Zap, Trophy, Palette, Shirt, Cake } from 'lucide-react';
 
-/**
- * Arshi's Safe Space v6 - "The Creative Studio Edition"
- * New Feature: Creative Studio (Cake Design, Fashion & Makeup)
- * Theme: Soft Brutalism / Digital Scrapbook
- */
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
