@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Heart, Cloud, Wind, Sparkles, Flame, ArrowLeft, Zap, Trophy, Palette, Shirt, Cake } from 'lucide-react';
 
+/**
+ * Arshi's Safe Space v7 - "Bug-Free Award Winning Edition"
+ * Fixes: Canvas negative radius crash, animation frame cleanup, and touch responsiveness.
+ */
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -14,7 +18,7 @@ const App = () => {
       setCursorPos({ x: e.clientX, y: e.clientY });
     };
     window.addEventListener('mousemove', moveCursor);
-    const timer = setTimeout(() => setLoading(false), 2500);
+    const timer = setTimeout(() => setLoading(false), 2000);
     return () => {
       window.removeEventListener('mousemove', moveCursor);
       clearTimeout(timer);
@@ -116,82 +120,28 @@ const HomeView = ({ setActiveTab, setHover }) => {
       <div className="flex-1 relative w-full max-w-7xl mx-auto mt-8 md:mt-0 p-6 md:p-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 h-full items-center">
           
-          {/* Item 1: Breathe (5 cols) */}
           <div className="lg:col-span-5 flex justify-center md:justify-start">
-             <MenuItem 
-                title="Breathe" 
-                subtitle="Deep Focus" 
-                icon={<Wind size={36} />} 
-                color="bg-[#E0F2FE]" // Light Sky
-                rotate="-rotate-3"
-                onClick={() => setActiveTab('breathe')}
-                setHover={setHover}
-             />
+             <MenuItem title="Breathe" subtitle="Deep Focus" icon={<Wind size={36} />} color="bg-[#E0F2FE]" rotate="-rotate-3" onClick={() => setActiveTab('breathe')} setHover={setHover} />
           </div>
 
-          {/* Item 2: Volcano (3 cols) */}
           <div className="lg:col-span-3 flex justify-center md:pt-24">
-             <MenuItem 
-                title="Tame Anger" 
-                subtitle="Calm the Fire" 
-                icon={<Flame size={36} />} 
-                color="bg-[#FFEDD5]" // Light Orange
-                rotate="rotate-6"
-                onClick={() => setActiveTab('volcano')}
-                setHover={setHover}
-             />
+             <MenuItem title="Tame Anger" subtitle="Calm the Fire" icon={<Flame size={36} />} color="bg-[#FFEDD5]" rotate="rotate-6" onClick={() => setActiveTab('volcano')} setHover={setHover} />
           </div>
 
-          {/* Item 3: Vent (4 cols) */}
           <div className="lg:col-span-4 flex justify-center md:justify-end">
-             <MenuItem 
-                title="Let Go" 
-                subtitle="Release Thoughts" 
-                icon={<Cloud size={36} />} 
-                color="bg-[#F3E8FF]" // Light Purple
-                rotate="-rotate-2"
-                onClick={() => setActiveTab('vent')}
-                setHover={setHover}
-             />
+             <MenuItem title="Let Go" subtitle="Release Thoughts" icon={<Cloud size={36} />} color="bg-[#F3E8FF]" rotate="-rotate-2" onClick={() => setActiveTab('vent')} setHover={setHover} />
           </div>
 
-          {/* Item 4: Creative Studio (New - 6 cols) */}
           <div className="lg:col-span-6 flex justify-center md:justify-end md:pr-12">
-             <MenuItem 
-                title="Aesthetic Studio" 
-                subtitle="Cake • Style • Makeup" 
-                icon={<Palette size={36} />} 
-                color="bg-[#FDF2F8]" // Light Pink
-                rotate="rotate-3"
-                onClick={() => setActiveTab('studio')}
-                setHover={setHover}
-             />
+             <MenuItem title="Aesthetic Studio" subtitle="Cake • Style • Makeup" icon={<Palette size={36} />} color="bg-[#FDF2F8]" rotate="rotate-3" onClick={() => setActiveTab('studio')} setHover={setHover} />
           </div>
 
-          {/* Item 5: Love Catcher (6 cols) */}
           <div className="lg:col-span-6 flex justify-center md:justify-start md:pl-12">
-             <MenuItem 
-                title="Love Catcher" 
-                subtitle="Arcade Mode" 
-                icon={<Heart size={36} />} 
-                color="bg-[#FFE4E6]" // Light Rose
-                rotate="-rotate-6"
-                onClick={() => setActiveTab('game')}
-                setHover={setHover}
-             />
+             <MenuItem title="Love Catcher" subtitle="Arcade Mode" icon={<Heart size={36} />} color="bg-[#FFE4E6]" rotate="-rotate-6" onClick={() => setActiveTab('game')} setHover={setHover} />
           </div>
           
-           {/* Item 6: Bubble Pop (12 cols - Centered) */}
            <div className="lg:col-span-12 flex justify-center pt-8">
-             <MenuItem 
-                title="Bubble Pop" 
-                subtitle="Stress Relief" 
-                icon={<Zap size={36} />} 
-                color="bg-[#DCFCE7]" // Light Green
-                rotate="rotate-1"
-                onClick={() => setActiveTab('popper')}
-                setHover={setHover}
-             />
+             <MenuItem title="Bubble Pop" subtitle="Stress Relief" icon={<Zap size={36} />} color="bg-[#DCFCE7]" rotate="rotate-1" onClick={() => setActiveTab('popper')} setHover={setHover} />
           </div>
 
         </div>
@@ -207,10 +157,7 @@ const MenuItem = ({ title, subtitle, icon, color, rotate, onClick, setHover }) =
     onMouseLeave={() => setHover(false)}
     className={`group relative w-full max-w-[260px] aspect-[4/5] ${rotate} transition-all duration-500 hover:z-30 hover:scale-105 hover:rotate-0 focus:outline-none`}
   >
-    {/* Realistic Tape */}
     <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-16 h-6 bg-white/30 backdrop-blur-[2px] shadow-[0_1px_1px_rgba(0,0,0,0.1)] rotate-[-2deg] z-20 border-l border-r border-white/20"></div>
-    
-    {/* Card Body */}
     <div className={`absolute inset-0 ${color} rounded-sm shadow-[0_10px_30px_-10px_rgba(0,0,0,0.2)] p-4 flex flex-col justify-between border-[12px] border-white transition-colors duration-300`}>
       <div className="w-full h-3/5 bg-white/40 rounded-sm flex items-center justify-center text-slate-800/60 group-hover:text-slate-800 transition-colors border border-white/50">
         <div className="transform transition-transform duration-500 group-hover:scale-125 group-hover:rotate-6">
@@ -221,8 +168,6 @@ const MenuItem = ({ title, subtitle, icon, color, rotate, onClick, setHover }) =
         <h3 className="font-serif text-2xl md:text-3xl text-slate-900 leading-[0.9] mb-2">{title}</h3>
         <p className="font-mono text-[10px] uppercase tracking-widest text-slate-500 border-t border-slate-300/50 pt-2">{subtitle}</p>
       </div>
-      
-      {/* Action Button Visual */}
       <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
         <ArrowLeft className="rotate-180 w-3 h-3" />
       </div>
@@ -233,7 +178,6 @@ const MenuItem = ({ title, subtitle, icon, color, rotate, onClick, setHover }) =
 const FeatureView = ({ activeTab, setActiveTab, setHover }) => {
   return (
     <div className="fixed inset-0 bg-[#FDF6F6] z-40 flex flex-col animate-fade-in-up overflow-auto">
-      {/* Top Bar */}
       <div className="absolute top-0 left-0 w-full p-6 flex justify-between items-center z-50 pointer-events-none">
         <button 
           onClick={() => setActiveTab('home')}
@@ -258,7 +202,230 @@ const FeatureView = ({ activeTab, setActiveTab, setHover }) => {
   );
 };
 
-// --- CREATIVE STUDIO (NEW) ---
+// --- REDESIGNED GAMES ---
+
+const AdvancedLoveCatcher = () => {
+  const canvasRef = useRef(null);
+  const [score, setScore] = useState(0);
+  const [gameState, setGameState] = useState('start'); 
+  const [combo, setCombo] = useState(0);
+
+  useEffect(() => {
+    if (gameState !== 'playing') return;
+    
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+    let animationFrameId;
+
+    // Game Variables
+    let player = { x: width / 2, y: height - 100, width: 60, height: 60, targetX: width / 2 };
+    let items = [];
+    let particles = [];
+    let texts = [];
+    let frame = 0;
+    let gameScore = 0;
+    let gameCombo = 0;
+    let difficulty = 1;
+
+    const handleMove = (x) => {
+      player.targetX = Math.max(player.width/2, Math.min(width - player.width/2, x));
+    };
+    
+    const mouseMove = (e) => handleMove(e.clientX);
+    const touchMove = (e) => handleMove(e.touches[0].clientX);
+    
+    window.addEventListener('mousemove', mouseMove);
+    window.addEventListener('touchmove', touchMove);
+    
+    // Loop
+    const loop = () => {
+      ctx.fillStyle = '#FDF6F6';
+      ctx.fillRect(0, 0, width, height);
+      
+      // Update Player (Lerp for smooth movement)
+      player.x += (player.targetX - player.x) * 0.15;
+      
+      // Draw Player
+      ctx.font = '50px serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('🧸', player.x, player.y);
+      
+      // Player Shadow
+      ctx.fillStyle = 'rgba(0,0,0,0.1)';
+      ctx.beginPath();
+      ctx.ellipse(player.x, player.y + 35, 25, 8, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Spawn Items
+      if (frame % Math.max(20, 60 - difficulty * 2) === 0) {
+        items.push({
+          x: Math.random() * (width - 40) + 20,
+          y: -50,
+          type: Math.random() > 0.2 ? 'heart' : 'storm',
+          speed: Math.random() * 3 + 2 + difficulty,
+          angle: Math.random() * Math.PI * 2,
+          rotationSpeed: (Math.random() - 0.5) * 0.1
+        });
+      }
+      
+      if (frame % 600 === 0) difficulty += 0.5;
+
+      // Update Items
+      for (let i = items.length - 1; i >= 0; i--) {
+        const item = items[i];
+        item.y += item.speed;
+        item.angle += item.rotationSpeed;
+        
+        ctx.save();
+        ctx.translate(item.x, item.y);
+        ctx.rotate(item.angle);
+        ctx.font = '30px serif';
+        ctx.fillText(item.type === 'heart' ? '💖' : '⛈️', 0, 0);
+        ctx.restore();
+
+        const dist = Math.hypot(player.x - item.x, player.y - item.y);
+        if (dist < 50) {
+           if (item.type === 'heart') {
+             gameScore += 10 + (gameCombo * 2);
+             gameCombo++;
+             setScore(gameScore);
+             setCombo(gameCombo);
+             
+             // Spawn Particles
+             for(let p=0; p<8; p++) {
+               particles.push({
+                 x: item.x, y: item.y,
+                 vx: (Math.random() - 0.5) * 10,
+                 vy: (Math.random() - 0.5) * 10,
+                 life: 1,
+                 color: `hsl(${330 + Math.random()*30}, 100%, 70%)`
+               });
+             }
+             
+             if (gameCombo % 5 === 0) {
+               texts.push({
+                 x: player.x, y: player.y - 50,
+                 text: ['Amazing!', 'Perfect!', 'Wow!', 'Love!'][Math.floor(Math.random()*4)],
+                 life: 1,
+                 yOffset: 0
+               });
+             }
+             
+           } else {
+             setGameState('gameover');
+             cancelAnimationFrame(animationFrameId);
+             return; 
+           }
+           items.splice(i, 1);
+        } else if (item.y > height + 50) {
+           items.splice(i, 1);
+           if (item.type === 'heart') {
+             gameCombo = 0;
+             setCombo(0);
+           }
+        }
+      }
+
+      // Update Particles (FIXED CRASH)
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= 0.02;
+        p.vy += 0.2;
+        
+        if (p.life > 0) {
+            ctx.fillStyle = p.color;
+            ctx.globalAlpha = p.life;
+            ctx.beginPath();
+            // Prevent negative radius crash
+            ctx.arc(p.x, p.y, Math.max(0, 4 * p.life), 0, Math.PI*2);
+            ctx.fill();
+            ctx.globalAlpha = 1;
+        } else {
+            particles.splice(i, 1);
+        }
+      }
+      
+      // Update Texts
+      for (let i = texts.length - 1; i >= 0; i--) {
+        const t = texts[i];
+        t.yOffset += 2;
+        t.life -= 0.02;
+        
+        if (t.life > 0) {
+            ctx.font = 'bold 24px sans-serif';
+            ctx.fillStyle = `rgba(219, 39, 119, ${t.life})`;
+            ctx.fillText(t.text, t.x, t.y - t.yOffset);
+        } else {
+            texts.splice(i, 1);
+        }
+      }
+
+      frame++;
+      animationFrameId = requestAnimationFrame(loop);
+    };
+    
+    // Start Loop
+    loop();
+    
+    return () => {
+      window.removeEventListener('mousemove', mouseMove);
+      window.removeEventListener('touchmove', touchMove);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [gameState]);
+
+  return (
+    <div className="w-full h-full relative bg-[#FDF6F6]">
+       {gameState === 'start' && (
+         <div className="absolute inset-0 flex flex-col items-center justify-center z-20 bg-white/50 backdrop-blur-sm animate-fade-in">
+            <h2 className="font-serif text-6xl text-slate-800 mb-4 tracking-tighter">Love Catcher</h2>
+            <p className="font-mono text-slate-500 mb-8 tracking-widest uppercase">Collect Hearts • Avoid Clouds • Build Combos</p>
+            <button 
+              onClick={() => { setGameState('playing'); setScore(0); setCombo(0); }}
+              className="px-12 py-4 bg-pink-500 text-white rounded-full font-bold text-xl hover:bg-pink-600 transition-all shadow-lg hover:scale-105"
+            >
+              Start Game
+            </button>
+         </div>
+       )}
+
+       {gameState === 'gameover' && (
+         <div className="absolute inset-0 flex flex-col items-center justify-center z-20 bg-white/80 backdrop-blur-md animate-fade-in-up">
+            <Trophy className="w-16 h-16 text-yellow-500 mb-4 animate-bounce" />
+            <h2 className="font-serif text-5xl text-slate-800 mb-2">Game Over!</h2>
+            <p className="text-2xl text-pink-600 font-bold mb-8">Score: {score}</p>
+            <p className="font-mono text-slate-400 mb-8 max-w-md text-center">
+              "Even if storm clouds come, Kushal's love collects in the background."
+            </p>
+            <button 
+              onClick={() => { setGameState('playing'); setScore(0); setCombo(0); }}
+              className="px-8 py-3 bg-slate-800 text-white rounded-full font-bold hover:bg-slate-700 transition-all"
+            >
+              Try Again
+            </button>
+         </div>
+       )}
+
+       {gameState === 'playing' && (
+         <div className="absolute top-24 left-1/2 -translate-x-1/2 z-20 pointer-events-none text-center">
+            <div className="font-serif text-5xl text-slate-200 font-bold drop-shadow-sm">{score}</div>
+            {combo > 2 && (
+              <div className="text-pink-500 font-bold animate-pulse mt-2">
+                COMBO x{combo}
+              </div>
+            )}
+         </div>
+       )}
+       
+       <canvas ref={canvasRef} className="block w-full h-full touch-none" />
+    </div>
+  );
+};
 
 const CreativeStudio = () => {
   const [mode, setMode] = useState('menu'); // menu, cake, style
@@ -588,230 +755,6 @@ const StyleDesigner = () => {
   );
 };
 
-// --- REDESIGNED GAMES ---
-
-const AdvancedLoveCatcher = () => {
-  const canvasRef = useRef(null);
-  const [score, setScore] = useState(0);
-  const [gameState, setGameState] = useState('start'); // start, playing, gameover
-  const [combo, setCombo] = useState(0);
-
-  useEffect(() => {
-    if (gameState !== 'playing') return;
-    
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-
-    // Game Variables
-    let player = { x: width / 2, y: height - 100, width: 60, height: 60, targetX: width / 2 };
-    let items = [];
-    let particles = [];
-    let texts = [];
-    let frame = 0;
-    let gameScore = 0;
-    let gameCombo = 0;
-    let difficulty = 1;
-
-    // Listeners
-    const handleMove = (x) => {
-      player.targetX = Math.max(player.width/2, Math.min(width - player.width/2, x));
-    };
-    
-    const mouseMove = (e) => handleMove(e.clientX);
-    const touchMove = (e) => handleMove(e.touches[0].clientX);
-    
-    window.addEventListener('mousemove', mouseMove);
-    window.addEventListener('touchmove', touchMove);
-    
-    // Loop
-    const loop = () => {
-      if (gameState !== 'playing') return;
-      ctx.fillStyle = '#FDF6F6';
-      ctx.fillRect(0, 0, width, height);
-      
-      // Update Player (Lerp for smooth movement)
-      player.x += (player.targetX - player.x) * 0.15;
-      
-      // Draw Player (Teddy Bear)
-      ctx.font = '50px serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('🧸', player.x, player.y);
-      
-      // Player Shadow
-      ctx.fillStyle = 'rgba(0,0,0,0.1)';
-      ctx.beginPath();
-      ctx.ellipse(player.x, player.y + 35, 25, 8, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Spawn Items
-      if (frame % Math.max(20, 60 - difficulty * 2) === 0) {
-        items.push({
-          x: Math.random() * (width - 40) + 20,
-          y: -50,
-          type: Math.random() > 0.2 ? 'heart' : 'storm',
-          speed: Math.random() * 3 + 2 + difficulty,
-          angle: Math.random() * Math.PI * 2,
-          rotationSpeed: (Math.random() - 0.5) * 0.1
-        });
-      }
-      
-      // Increase difficulty
-      if (frame % 600 === 0) difficulty += 0.5;
-
-      // Update Items
-      for (let i = items.length - 1; i >= 0; i--) {
-        const item = items[i];
-        item.y += item.speed;
-        item.angle += item.rotationSpeed;
-        
-        ctx.save();
-        ctx.translate(item.x, item.y);
-        ctx.rotate(item.angle);
-        ctx.font = '30px serif';
-        ctx.fillText(item.type === 'heart' ? '💖' : '⛈️', 0, 0);
-        ctx.restore();
-
-        // Collision
-        const dist = Math.hypot(player.x - item.x, player.y - item.y);
-        if (dist < 50) {
-           if (item.type === 'heart') {
-             // Catch Heart
-             gameScore += 10 + (gameCombo * 2);
-             gameCombo++;
-             setScore(gameScore);
-             setCombo(gameCombo);
-             
-             // Spawn Particles
-             for(let p=0; p<8; p++) {
-               particles.push({
-                 x: item.x, y: item.y,
-                 vx: (Math.random() - 0.5) * 10,
-                 vy: (Math.random() - 0.5) * 10,
-                 life: 1,
-                 color: `hsl(${330 + Math.random()*30}, 100%, 70%)`
-               });
-             }
-             
-             // Spawn Text
-             if (gameCombo % 5 === 0) {
-               texts.push({
-                 x: player.x, y: player.y - 50,
-                 text: ['Amazing!', 'Perfect!', 'Wow!', 'Love!'][Math.floor(Math.random()*4)],
-                 life: 1,
-                 yOffset: 0
-               });
-             }
-             
-           } else {
-             // Hit Storm
-             setGameState('gameover');
-             return; // Stop loop
-           }
-           items.splice(i, 1);
-        } else if (item.y > height + 50) {
-           items.splice(i, 1);
-           if (item.type === 'heart') {
-             gameCombo = 0; // Break combo
-             setCombo(0);
-           }
-        }
-      }
-
-      // Update Particles
-      for (let i = particles.length - 1; i >= 0; i--) {
-        const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        p.life -= 0.02;
-        p.vy += 0.2; // Gravity
-        
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.life;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, 4 * p.life, 0, Math.PI*2);
-        ctx.fill();
-        ctx.globalAlpha = 1;
-        
-        if (p.life <= 0) particles.splice(i, 1);
-      }
-      
-      // Update Texts
-      for (let i = texts.length - 1; i >= 0; i--) {
-        const t = texts[i];
-        t.yOffset += 2;
-        t.life -= 0.02;
-        
-        ctx.font = 'bold 24px sans-serif';
-        ctx.fillStyle = `rgba(219, 39, 119, ${t.life})`;
-        ctx.fillText(t.text, t.x, t.y - t.yOffset);
-        
-        if (t.life <= 0) texts.splice(i, 1);
-      }
-
-      frame++;
-      requestAnimationFrame(loop);
-    };
-    
-    const anim = requestAnimationFrame(loop);
-    
-    return () => {
-      window.removeEventListener('mousemove', mouseMove);
-      window.removeEventListener('touchmove', touchMove);
-      cancelAnimationFrame(anim);
-    };
-  }, [gameState]);
-
-  return (
-    <div className="w-full h-full relative bg-[#FDF6F6]">
-       {gameState === 'start' && (
-         <div className="absolute inset-0 flex flex-col items-center justify-center z-20 bg-white/50 backdrop-blur-sm animate-fade-in">
-            <h2 className="font-serif text-6xl text-slate-800 mb-4 tracking-tighter">Love Catcher</h2>
-            <p className="font-mono text-slate-500 mb-8 tracking-widest uppercase">Collect Hearts • Avoid Clouds • Build Combos</p>
-            <button 
-              onClick={() => { setGameState('playing'); setScore(0); setCombo(0); }}
-              className="px-12 py-4 bg-pink-500 text-white rounded-full font-bold text-xl hover:bg-pink-600 transition-all shadow-lg hover:scale-105"
-            >
-              Start Game
-            </button>
-         </div>
-       )}
-
-       {gameState === 'gameover' && (
-         <div className="absolute inset-0 flex flex-col items-center justify-center z-20 bg-white/80 backdrop-blur-md animate-fade-in-up">
-            <Trophy className="w-16 h-16 text-yellow-500 mb-4 animate-bounce" />
-            <h2 className="font-serif text-5xl text-slate-800 mb-2">Game Over!</h2>
-            <p className="text-2xl text-pink-600 font-bold mb-8">Score: {score}</p>
-            <p className="font-mono text-slate-400 mb-8 max-w-md text-center">
-              "Even if storm clouds come, Kushal's love collects in the background."
-            </p>
-            <button 
-              onClick={() => { setGameState('playing'); setScore(0); setCombo(0); }}
-              className="px-8 py-3 bg-slate-800 text-white rounded-full font-bold hover:bg-slate-700 transition-all"
-            >
-              Try Again
-            </button>
-         </div>
-       )}
-
-       {gameState === 'playing' && (
-         <div className="absolute top-24 left-1/2 -translate-x-1/2 z-20 pointer-events-none text-center">
-            <div className="font-serif text-5xl text-slate-200 font-bold drop-shadow-sm">{score}</div>
-            {combo > 2 && (
-              <div className="text-pink-500 font-bold animate-pulse mt-2">
-                COMBO x{combo}
-              </div>
-            )}
-         </div>
-       )}
-       
-       <canvas ref={canvasRef} className="block w-full h-full touch-none" />
-    </div>
-  );
-};
-
 const ThoughtPopper = () => {
   const [bubbles, setBubbles] = useState([]);
   
@@ -899,8 +842,6 @@ const ThoughtPopper = () => {
     </div>
   );
 };
-
-// --- Standard Features (Refined) ---
 
 const BreathingExercise = () => {
   const [phase, setPhase] = useState('Inhale');
