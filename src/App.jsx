@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Heart, Cloud, Wind, Sparkles, Flame, ArrowLeft, Zap, Trophy, Palette, Shirt, Cake, Sword, Droplets, Hand, Skull, BookOpen, Feather, Quote } from 'lucide-react';
+import { Heart, Cloud, Wind, Sparkles, Flame, ArrowLeft, Zap, Trophy, Palette, Shirt, Cake, Sword, Droplets, Hand, Skull, BookOpen, Feather, Quote, Calendar, Image as ImageIcon } from 'lucide-react';
 
 /**
- * Arshi's Safe Space v11 - "The Novel Quotes Update"
- * New Feature: 'Quote Gallery' uses 11 quotes from the user's novel.
+ * Arshi's Safe Space v13 - "The Year Book Images Update"
+ * Updates: Added image paths to Year Book 2025
  */
 
 const App = () => {
@@ -139,9 +139,9 @@ const HomeView = ({ setActiveTab, setHover }) => {
              <MenuItem title="Bubble Pop" subtitle="Stress Relief" icon={<Zap size={36} />} color="bg-[#DCFCE7]" rotate="rotate-1" onClick={() => setActiveTab('popper')} setHover={setHover} />
           </div>
 
-          {/* New Novel Item */}
+          {/* New Year Book Item */}
           <div className="lg:col-span-4 flex justify-center pt-8">
-             <MenuItem title="Our Story" subtitle="Read The Novel" icon={<BookOpen size={36} />} color="bg-[#F3F4F6]" rotate="rotate-2" onClick={() => setActiveTab('novel')} setHover={setHover} />
+             <MenuItem title="Year Book" subtitle="2025 Journey" icon={<Calendar size={36} />} color="bg-[#FFF7ED]" rotate="rotate-2" onClick={() => setActiveTab('yearbook')} setHover={setHover} />
           </div>
 
           {/* Quote Gallery Item */}
@@ -149,8 +149,8 @@ const HomeView = ({ setActiveTab, setHover }) => {
              <MenuItem title="Vibes" subtitle="Quote Gallery" icon={<Quote size={36} />} color="bg-[#FFF1F2]" rotate="-rotate-3" onClick={() => setActiveTab('quotes')} setHover={setHover} />
           </div>
 
-          {/* Beat Kushal Item (Full Width at bottom) */}
-          <div className="lg:col-span-12 flex justify-center pt-8">
+          {/* Beat Kushal Item */}
+          <div className="lg:col-span-6 flex justify-center pt-8">
              <MenuItem 
                 title="The Dark Room" 
                 subtitle="Beat Kushal" 
@@ -160,6 +160,11 @@ const HomeView = ({ setActiveTab, setHover }) => {
                 onClick={() => setActiveTab('beat')}
                 setHover={setHover}
              />
+          </div>
+
+           {/* Novel Item */}
+          <div className="lg:col-span-6 flex justify-center pt-8">
+             <MenuItem title="Our Story" subtitle="Read The Novel" icon={<BookOpen size={36} />} color="bg-[#F3F4F6]" rotate="rotate-2" onClick={() => setActiveTab('novel')} setHover={setHover} />
           </div>
 
         </div>
@@ -215,6 +220,111 @@ const FeatureView = ({ activeTab, setActiveTab, setHover }) => {
         {activeTab === 'beat' && <BeatKushal />}
         {activeTab === 'novel' && <NovelReader />}
         {activeTab === 'quotes' && <QuoteGallery />}
+        {activeTab === 'yearbook' && <YearBook />}
+      </div>
+    </div>
+  );
+};
+
+// --- YEAR BOOK 2025 (NEW) ---
+
+const YearBook = () => {
+  const months = [
+    {
+      month: "January",
+      title: "The Strength in the Storm",
+      text: "Our 'kalesh' phase... but I don't think of the arguments. I think of your resilience. You didn't walk away. You handled us with grace. Thank you for holding my hand when the ground was shaky.",
+      color: "bg-red-50",
+      emoji: "🌪️",
+      img: "images/img1.jpg"
+    },
+    {
+      month: "February",
+      title: "Calm After the Breakup",
+      text: "The 'biggest breakup', yet here we are. The miracle of Maha Shivratri... that 20-minute date felt like coming home after a war. We entered broken and left unbreakable.",
+      color: "bg-blue-50",
+      emoji: "🕊️",
+      img: "images/img2.jpg"
+    },
+    {
+      month: "March",
+      title: "Brownies and Birthdays",
+      text: "Even when busy, you made me feel seen. Our fights are a tradition now, but you never leave. That brownie date on March 21st... I love you for the time you give even when you have none.",
+      color: "bg-amber-50",
+      emoji: "🎂",
+      img: "images/img3.jpg"
+    },
+    {
+      month: "April",
+      title: "Your Day, My Joy",
+      text: "I love your birthday more than you do. Making 'khub saare gifts' was my way of thanking the universe. Seeing you happy is my greatest achievement.",
+      color: "bg-pink-50",
+      emoji: "🎁",
+      img: "images/img4.jpg"
+    },
+    {
+      month: "May",
+      title: "Falling All Over Again",
+      text: "The 'hihihi' phase. A soft exhale. We fell for each other again with deeper maturity. Every effort returned tenfold. The spark only grows brighter.",
+      color: "bg-purple-50",
+      emoji: "🌸",
+      img: "images/img5.jpg"
+    },
+    {
+      month: "June",
+      title: "One Year of Us",
+      text: "The milestone. Surviving January to June felt like a gold medal. From kalesh to a whole year of 'us'. You are my greatest habit. I love you more today than day one.",
+      color: "bg-yellow-50",
+      emoji: "🥇",
+      img: "images/img6.jpg"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen pt-24 pb-12 px-4 md:px-12 flex flex-col items-center bg-[#FFF7ED]">
+      <h2 className="font-serif text-5xl text-slate-800 mb-2 text-center">Year Book 2025</h2>
+      <p className="font-mono text-xs text-slate-400 uppercase tracking-widest mb-16 text-center">
+        JANUARY TO JUNE • A LOVE STORY
+      </p>
+
+      <div className="max-w-5xl w-full space-y-12">
+        {months.map((m, i) => (
+          <div 
+            key={i}
+            className={`flex flex-col md:flex-row gap-8 items-stretch group ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
+          >
+            {/* Image Placeholder Card */}
+            <div className="flex-1 min-h-[300px] bg-white rounded-2xl shadow-xl p-4 rotate-1 transition-transform duration-500 group-hover:rotate-0 group-hover:scale-[1.02] border border-slate-100 flex flex-col items-center justify-center relative overflow-hidden">
+               <img 
+                 src={m.img} 
+                 alt={m.month}
+                 className="absolute inset-0 w-full h-full object-cover rounded-xl"
+                 onError={(e) => {e.target.onerror = null; e.target.src="https://placehold.co/600x400/ffe4e6/db2777?text=Add+Image"}}
+               />
+               
+               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none rounded-xl"></div>
+
+               <div className="absolute bottom-6 right-6 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full shadow-sm text-xs font-bold text-slate-500 border border-white transform rotate-[-5deg] pointer-events-none">
+                 {m.month} '25
+               </div>
+            </div>
+
+            {/* Text Content */}
+            <div className={`flex-1 p-8 rounded-3xl ${m.color} border border-white/50 shadow-lg flex flex-col justify-center transition-all duration-500 hover:shadow-xl`}>
+               <div className="text-4xl mb-4">{m.emoji}</div>
+               <h3 className="font-serif text-3xl text-slate-800 mb-4">{m.title}</h3>
+               <p className="font-serif text-slate-600 leading-relaxed text-lg">
+                 "{m.text}"
+               </p>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <div className="mt-20 p-8 border-t border-slate-200 w-full max-w-2xl text-center">
+        <p className="font-serif italic text-slate-500 text-xl">
+          "We didn't just survive the year; we built a foundation."
+        </p>
       </div>
     </div>
   );
